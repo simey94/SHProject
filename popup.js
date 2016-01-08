@@ -5,6 +5,7 @@
  * @param {function(string)} callback - called when the URL of the current tab
  *   is found.
  */
+
 function getCurrentTabUrl(callback) {
   // Query filter to be passed to chrome.tabs.query - see
   // https://developer.chrome.com/extensions/tabs#method-query
@@ -18,6 +19,7 @@ function getCurrentTabUrl(callback) {
 
     // A tab is a plain object that provides information about the tab.
     var url = tab.url;
+
 
     console.assert(typeof url == 'string', 'tab.url should be a string');
     callback(url);
@@ -105,7 +107,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // Put the image URL in Google search.
     renderStatus('Performing Google Image search for ' + url);
     renderUrl('The URL you are visiting is: ' + url);
-    
+
+    // *** this is wrong ****
+    //var iframeURL = document.getElementById("google_ads_iframe_/59666047/theguardian.com/uk/front/ng_0__hidden__").src;
+    //renderBanner(iframeURL);
+
     //var bannerUrl = getBannerUrl();
     //renderBanner('The banner ad has a URL of: ' + bannerUrl);
 
