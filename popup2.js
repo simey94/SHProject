@@ -1,11 +1,54 @@
 chrome.runtime.onMessage.addListener(function(request, sender) {
   if (request.action == "getSource") {
-    message.innerText = request.source;
+    // modify printing to each line (dont send back as one huge HTML element)
+    // print each iframe individually
+    // not inner text another element
+    var iframes = request.source.match(/(<iframe.*?>.*?<\/iframe>)/g);
+    if(iframes == null){
+      iframeCount.innerText += "Sorry no iFrames were found on this page!";
+    } else {
+      iframeCount.innerText += "Number of iFrames on this page: " + iframes.length + "\n";
+    }
+
+    for(var i =0; i < iframes.length; i++){
+      message.innerText += iframes[i];
+      message.innerHTML += "<br />"; 
+    }
+    //message.innerText += request.source;
   }
 });
 
 function onWindowLoad() {
   var message = document.querySelector('#message');
+  var iframeCount = document.querySelector('#iframeCount');
+
+  //window.open(url, '_blank');
+
+  // document.addEventListener('DOMContentLoaded', function () {
+  // var el = document.getElementById('searchButton');
+  // el.addEventListener('click', clickHandler);
+  // });
+
+  // function clickHandler(){
+  //   var searchTerm = document.getElementById('mySearch').getInnerText;
+  //   console.log(searchTerm);  
+  // }
+
+
+  // chrome.browserAction.onClicked.addListener(function(activeTab)
+  // {
+  //   var newURL = "http://www.youtube.com/watch?v=oHg5SJYRHA0";
+  //   chrome.tabs.create({ url: newURL });
+  // });
+
+  // document.addEventListener('DOMContentLoaded', function() {
+  //     document.getElementById("searchButton").addEventListener('click',function ()
+  //     {
+  //      console.log("hello");
+  //      //validation code to see State field is mandatory.  
+  //     }  ); 
+  // });
+
 
   var queryInfo = {
     active: true,
@@ -28,7 +71,6 @@ function onWindowLoad() {
       message.innerText = 'There was an error injecting script : \n' + chrome.runtime.lastError.message;
     }
   });
-
   });
 }
 

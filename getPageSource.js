@@ -23,17 +23,23 @@ function DOMtoString(document_root) {
         node = node.nextSibling;
     }
 
-    // extract iframes only 
+    // extract iframes from full HTML 
     var iframes = html.match(/(<iframe.*?>.*?<\/iframe>)/g);
+    if(iframes == undefined){
+        iframes = "No iframes detected upon this webpage!";
+        return iframes;
+    }
+
 
     var filtered = "";
     for(var i = 0; i < iframes.length; i++){
         filtered += filter_iframe(iframes[i])
         if(filtered == undefined){
-            filtered = "YOLO";
+            filtered = "error";
         }
     }
-    console.log("here filtered is: " + filtered);
+    
+    //console.log("here filtered is: " + filtered);
     return filtered;
 }
 
@@ -41,7 +47,7 @@ function filter_iframe(iframe_tag){
     var line_break = "<br />";
     var f = iframe_tag.concat(line_break);
     if(f == undefined){
-        f = "YOLO";
+        f = "error";
     }
     return f;
 }

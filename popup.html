@@ -1,11 +1,14 @@
 <!doctype html>
 <html>
   <head>
+    <meta charset="utf-8">
     <title>Ad explorer</title>
     <style>
       body {
         font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
         font-size: 100%;
+        /*color: white;*/
+        /*background-color: blue;*/
       }
       #status {
         /* avoid an excessively wide status text */
@@ -15,11 +18,26 @@
         max-width: 400px;
       }
     </style>
-    <script src="popup2.js"></script>
+    <!---> <script src="background.js"></script> <!-->
+    <script src="popup2.js"></script> 
+    <script src="search.js"></script>  
   </head>
   <body>
+    <!-- <form id="searchForm"> -->
+    Search: <input type="search" id="mySearch" value="E.g. Google iFrames">
+    <button id="searchButton">Click here to Search</button>
+
+    <p id="demo"></p>
     <div id="url"></div>
-    <div id="message">Injecting Script....</div>
+    <p id="searchTerm"></p>
+    <p id="iframeCount"></p>
+    <p id="searchIframesCount"></p>
+    <p id="originalLabel"> Iframes source on page: </p>
+    <div id="message"></div>
+    <br></br>
+    <p id="searchLabel"> Iframes source containing search term: </p>
+    <div id="searchMessage"></div>
+    <p><button id ="copyButton"><img src="copy-icon.png" /></button></p>
   </body>
 </html>
 

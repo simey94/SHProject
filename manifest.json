@@ -8,10 +8,15 @@
   "browser_action": {
     "default_icon": "favicon.png",
     "default_popup": "popup.html",
-    "default_title": "Click here!"
+    "default_title": "Explore some Ads!"
+  },
+   "background": {
+    "scripts": ["background.js"]
   },
   "permissions": [
     "tabs",
-    "<all_urls>"
+    "<all_urls>",
+    "http://*/",
+    "https://*/"
   ]
 }
