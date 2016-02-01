@@ -4,6 +4,8 @@
 
 document.addEventListener('DOMContentLoaded', function () {
 var el = document.getElementById('searchButton');
+document.getElementById("searchLabel").style.visibility = "hidden";
+document.getElementById("copyButton").style.visibility = "hidden";
 el.addEventListener('click', clickHandler);
 });
 
@@ -16,6 +18,9 @@ var iframesConstant;
 
 function clickHandler(){
 	//message.innerText = iframesConstant;
+	document.getElementById("searchLabel").style.visibility = "visible";
+	document.getElementById("copyButton").style.visibility = "visible";
+	
 	document.getElementById('message').style.display = "block";
 	var searchTerm = document.getElementById('mySearch').value;
 	var iframes = document.getElementById('message').innerText;
@@ -31,15 +36,19 @@ function clickHandler(){
     var count = 0;
     searchMessage.innerText = "";
 
+    var listIndex = 1;
     for(var i =0; i < iframesArray.length; i++){
     	console.log("in loop");
 		//if(iframes[i].indexOf(searchTerm) > -1){
 			var frame = iframesArray[i];
 			if(frame.includes(searchTerm)){
 			count ++;
-			searchMessage.innerText += frame + "\n";
+			var output = listIndex + ") ";
+			var boldOutput = output.bold();
+			searchMessage.innerHTML += boldOutput;
+			searchMessage.innerText += frame + "\n" + "\n";
+			listIndex ++;
 			console.log("added an iframe");
-      		//message.innerHTML += "<br />"; 
 		}	
     }
     console.log(count);
@@ -73,6 +82,15 @@ console.log(copyButton);
   window.getSelection().removeAllRanges();  
 };
 
+// var info;
+// chrome.runtime.onMessage(function(message,sender,sendResponse){
+//   // When we get a message from the content script
+//   if(message.method == 'setInfo')
+//     info = message.info;
+//   // When we get a message from the popup
+//   else if(message.method == 'getInfo')
+//     sendResponse(info);
+// });
 
 // document.addEventListener('DOMContentLoaded', function() {
 //     document.getElementById("mySearch").addEventListener('click',function ()

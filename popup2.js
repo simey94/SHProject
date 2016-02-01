@@ -10,9 +10,11 @@ chrome.runtime.onMessage.addListener(function(request, sender) {
       iframeCount.innerText += "Number of iFrames on this page: " + iframes.length + "\n";
     }
 
+    var listIndex = 1;
     for(var i =0; i < iframes.length; i++){
-      message.innerText += iframes[i];
-      message.innerHTML += "<br />"; 
+      message.innerText += listIndex + ") " + iframes[i];
+      listIndex ++;
+      message.innerHTML += "<br /> <br />"; 
     }
     //message.innerText += request.source;
   }
@@ -73,5 +75,10 @@ function onWindowLoad() {
   });
   });
 }
+
+// chrome.runtime.sendMessage({'method':'getInfo'},function(response){
+//   //response is now the info collected by the content script.
+//   console.log(response);
+// });
 
 window.onload = onWindowLoad;
