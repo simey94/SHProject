@@ -39,7 +39,6 @@ function DOMtoString(document_root) {
         }
     }
     
-    //console.log("here filtered is: " + filtered);
     return filtered;
 }
 

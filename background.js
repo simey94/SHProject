@@ -1,7 +1,3 @@
-// chrome.browserAction.onClicked.addListener(function() {
-//     chrome.tabs.create({'url': "http://www.sproutsocial.com"});
-// });
-
 document.addEventListener('DOMContentLoaded', function () {
 var el = document.getElementById('searchButton');
 document.getElementById("searchLabel").style.visibility = "hidden";
